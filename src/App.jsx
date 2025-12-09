@@ -11,6 +11,7 @@ function App() {
       return [];
     }
   });
+  console.log(tasks);
 
   // A boolean value. If true, html to add new task and display overlay is rendered.
   const [newTask, setNewTask] = useState(false);
