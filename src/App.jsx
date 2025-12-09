@@ -6,12 +6,12 @@ function App() {
   // if there are no previos task in localStorage tasks shoul be an empty array
   const [tasks, setTasks] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('todo'));
+      const parsed = JSON.parse(localStorage.getItem('todo'));
+      return Array.isArray(parsed) ? parsed : [];
     } catch {
       return [];
     }
   });
-  console.log(tasks);
 
   // A boolean value. If true, html to add new task and display overlay is rendered.
   const [newTask, setNewTask] = useState(false);
