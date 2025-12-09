@@ -5,8 +5,11 @@ function App() {
   // Variable that stores todo tasks.
   // if there are no previos task in localStorage tasks shoul be an empty array
   const [tasks, setTasks] = useState(() => {
-    const items = localStorage.getItem('todo');
-    return items != 'undefined' && items != 'null' ? JSON.parse(items) : [];
+    try {
+      return JSON.parse(localStorage.getItem('todo'));
+    } catch {
+      return [];
+    }
   });
 
   // A boolean value. If true, html to add new task and display overlay is rendered.
@@ -31,7 +34,7 @@ function App() {
   function deleteTask(taskToDelete) {
     const newData = tasks.filter((item) => item !== taskToDelete);
     setTasks(newData);
-    const localTasks = JSON.stringify(tasks);
+    const localTasks = JSON.stringify(newData);
     localStorage.setItem('todo', localTasks);
   }
 
